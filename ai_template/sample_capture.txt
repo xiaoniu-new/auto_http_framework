@@ -1,20 +1,37 @@
-请求信息：
-Method: GET
-URL: http://127.0.0.1:8000/hr/leave/balance
-Headers:
-  Authorization: Bearer <token>
-  Content-Type: application/json
-Query:
-  user_id=10001
+【接口名称】假期申请提交
+【所属业务域】hr
+【所属子系统】leave
+【请求方式】POST
+【接口路径】/hr/leave/apply
 
-响应示例：
+====请求信息====
+Headers:
+Content-Type: application/json
+
+Request Body(json):
 {
-  "code": 0,
-  "message": "success",
-  "data": {
-    "user_id": "10001",
-    "leave_balance": 18,
-    "used_days": 2,
-    "total_days": 20
-  }
+    "startDate":"2026-09-01",
+    "endDate":"2026-09-03",
+    "leaveType":"annual",
+    "reason":"个人休假"
 }
+
+====成功响应====
+{
+    "code":0,
+    "msg":"success",
+    "data":{
+        "leaveId":"LV20260901001",
+        "status":"pending"
+    }
+}
+
+====异常响应参考（可选）====
+startDate为空：
+{
+    "code":40001,
+    "msg":"开始日期不能为空",
+    "data":null
+}
+
+【业务特殊规则】开始日期不能晚于结束日期

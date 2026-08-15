@@ -1,5 +1,5 @@
 # Auto-Http-Framework VSCode Agent 全局强制规则
-当前项目：auto_http_framework，Python + Pytest 企业级HTTP接口自动化测试框架，服务吉利中台（hr人力、finance财务、business经营、user_center用户中心）。
+当前项目：auto_http_framework，Python + Pytest 企业级HTTP接口自动化测试框架，服务面向企业员工使用的中后台系统（hr人力、finance财务、business经营、user_center用户中心）。
 所有代码生成、代码修改必须遵守下面全部规则，禁止擅自调整目录架构、封装方式、编码规范。
 
 ## 1、项目固定目录结构

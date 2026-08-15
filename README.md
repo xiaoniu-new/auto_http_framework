@@ -1,6 +1,6 @@
 # Auto Http Framework
 
-这是一个基于 Python + Pytest 的企业级 HTTP 接口自动化测试框架，适用于吉利中台的 hr、finance、business、user_center 等业务域。
+这是一个基于 Python + Pytest 的企业级 HTTP 接口自动化测试框架，适用于中后台的 hr、finance、business、user_center 等业务域。
 
 ## 目录架构
 
