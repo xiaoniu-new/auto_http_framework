@@ -1,0 +1,12 @@
+Request:
+GET /business/metrics?date=2026-08
+Response:
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "date": "2026-08",
+    "revenue": 500000,
+    "orders": 1200
+  }
+}

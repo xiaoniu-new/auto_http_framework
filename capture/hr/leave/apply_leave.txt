@@ -1,0 +1,18 @@
+Request:
+POST /hr/leave/apply
+Body:
+{
+  "user_id": "10001",
+  "leave_type": "annual",
+  "days": 1
+}
+
+Response:
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "apply_id": "LA-20260815-001",
+    "status": "pending"
+  }
+}

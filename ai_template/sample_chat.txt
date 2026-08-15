@@ -1,0 +1,2 @@
+参照 .vscode/agent-rules.md 全部规范，读取 ai_template/case_generate_prompt.txt 规则，
+根据 capture/hr/leave/假期申请接口.txt 的抓包内容生成pytest测试用例。

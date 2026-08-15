@@ -1,0 +1,8 @@
+module: performance
+base_path: /hr/performance
+endpoints:
+  - name: get_summary
+    method: GET
+    path: /summary
+    params:
+      user_id: "10001"

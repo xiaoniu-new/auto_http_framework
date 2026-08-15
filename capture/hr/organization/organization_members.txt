@@ -1,0 +1,11 @@
+Request:
+GET /hr/organization/members?department_id=D001
+Response:
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "department_id": "D001",
+    "members": [{"user_id": "10001", "name": "张三"}]
+  }
+}

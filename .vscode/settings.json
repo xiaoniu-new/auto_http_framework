@@ -1,0 +1,10 @@
+{
+    "copilot.chat.contextFiles": [
+        ".vscode/agent-rules.md",
+        "ai_template/case_generate_prompt.txt"
+    ],
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.venv": true
+    }
+}

@@ -1,0 +1,16 @@
+Request:
+GET /hr/leave/balance?user_id=10001
+Headers:
+Authorization: Bearer <token>
+
+Response:
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "user_id": "10001",
+    "leave_balance": 18,
+    "used_days": 2,
+    "total_days": 20
+  }
+}

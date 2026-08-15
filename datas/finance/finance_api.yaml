@@ -1,0 +1,5 @@
+api_name: finance
+modules:
+  - name: payment
+    endpoint: /finance/payment/query
+    method: GET

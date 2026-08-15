@@ -1,0 +1,8 @@
+module: organization
+base_path: /hr/organization
+endpoints:
+  - name: get_members
+    method: GET
+    path: /members
+    params:
+      department_id: "D001"

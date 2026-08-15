@@ -1,0 +1,20 @@
+请求信息：
+Method: GET
+URL: http://127.0.0.1:8000/hr/leave/balance
+Headers:
+  Authorization: Bearer <token>
+  Content-Type: application/json
+Query:
+  user_id=10001
+
+响应示例：
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "user_id": "10001",
+    "leave_balance": 18,
+    "used_days": 2,
+    "total_days": 20
+  }
+}

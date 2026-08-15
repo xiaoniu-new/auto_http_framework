@@ -1,0 +1,15 @@
+module: leave
+base_path: /hr/leave
+endpoints:
+  - name: get_balance
+    method: GET
+    path: /balance
+    params:
+      user_id: "10001"
+  - name: apply_leave
+    method: POST
+    path: /apply
+    body:
+      user_id: "10001"
+      leave_type: "annual"
+      days: 1

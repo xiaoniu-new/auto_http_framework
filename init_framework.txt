@@ -1,0 +1,8 @@
+读取 .vscode/agent-rules.md 里面全部规范。
+基于文档定义的 auto_http_framework 完整目录架构，
+自动创建整套工程所有文件夹、所有源码文件，填充完整可运行代码：
+包含ai_template、capture、common、test_cases、datas目录，
+根目录 README.md、requirements.txt、.gitignore、conftest.py、run.py。
+创建完成后，生成人力假期模块示范用例 test_cases/hr/test_leave_api.py。
+所有文件严格遵守架构规范，不要遗漏目录，代码保证可直接运行。
+执行文件创建时，需要权限请直接向我确认。

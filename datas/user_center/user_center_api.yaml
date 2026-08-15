@@ -1,0 +1,8 @@
+module: user_center
+base_path: /user_center
+endpoints:
+  - name: get_profile
+    method: GET
+    path: /profile
+    params:
+      user_id: "10001"

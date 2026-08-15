@@ -1,0 +1,12 @@
+Request:
+GET /hr/performance/summary?user_id=10001
+Response:
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "user_id": "10001",
+    "score": 92,
+    "level": "A"
+  }
+}

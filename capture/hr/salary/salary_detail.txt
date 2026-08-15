@@ -1,0 +1,13 @@
+Request:
+GET /hr/salary/detail?user_id=10001
+Response:
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "user_id": "10001",
+    "salary": 12000,
+    "bonus": 2000,
+    "allowance": 500
+  }
+}
