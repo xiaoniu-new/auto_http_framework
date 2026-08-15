@@ -15,7 +15,7 @@
 
 1. 安装依赖：
    ```bash
-   python3 -m pip install -r requirements.txt
+   按照"安装python虚拟环境"在项目下安装虚拟环境
    ```
 2. 配置环境变量或 `datas/config.yaml`：
    ```bash
@@ -25,7 +25,8 @@
    ```
 3. 运行全部用例：
    ```bash
-   python3 run.py
+   1）执行 source venv/bin/activate 先激活虚拟环境
+   2）执行 python3 run.py
    ```
 4. 运行单个模块：
    ```bash

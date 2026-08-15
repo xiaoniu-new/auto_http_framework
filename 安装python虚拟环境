@@ -1,0 +1,21 @@
+方案一：创建不带 pip 的虚拟环境（最快，推荐）
+我们可以先创建一个不含 pip 的虚拟环境，然后再通过 get-pip.py 脚本手动把 pip 装进去。
+1. 创建不带 pip 的虚拟环境：
+bash
+
+python3 -m venv --without-pip venv
+
+2. 激活虚拟环境：
+bash
+
+source venv/bin/activate
+
+3. 在虚拟环境中安装 pip：
+bash
+
+curl -sS https://bootstrap.pypa.io/get-pip.py | python3
+
+4. 验证并安装依赖：
+bash
+
+pip install -r requirements.txt
