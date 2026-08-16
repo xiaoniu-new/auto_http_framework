@@ -1,0 +1,6 @@
+base_url: "http://finance.local:8000"
+api_token: ""
+request_timeout: 12
+common_headers:
+  X-Product: FINANCE
+common_params: {}

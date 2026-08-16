@@ -1,0 +1,6 @@
+base_url: "http://business.local:8000"
+api_token: ""
+request_timeout: 10
+common_headers:
+  X-Product: BUSINESS
+common_params: {}

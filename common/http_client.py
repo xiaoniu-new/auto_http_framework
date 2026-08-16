@@ -4,7 +4,12 @@ from typing import Any, Dict, Optional
 
 import requests
 
-from common.config import API_TOKEN, BASE_URL, DEFAULT_TIMEOUT
+from common.config import (
+    API_TOKEN,
+    BASE_URL,
+    DEFAULT_TIMEOUT,
+    get_domain_config,
+)
 
 
 class HttpClient:
@@ -16,19 +21,55 @@ class HttpClient:
         token: Optional[str] = None,
         timeout: Optional[int] = None,
         headers: Optional[Dict[str, str]] = None,
+        domain: Optional[str] = None,
     ):
-        self.base_url = (base_url or BASE_URL).rstrip("/")
-        self.timeout = timeout or DEFAULT_TIMEOUT
+        # Domain-aware configuration (backwards compatible): if `domain` is
+        # provided, load domain config and use its values unless explicit
+        # arguments override them.
+        domain_cfg: Optional[Dict[str, Any]] = None
+        if domain:
+            try:
+                domain_cfg = get_domain_config(domain)
+            except Exception:
+                domain_cfg = None
+
+        resolved_base = None
+        resolved_token = None
+        resolved_timeout = None
+        resolved_headers: Dict[str, str] = {}
+        resolved_common_params: Dict[str, Any] = {}
+
+        if domain_cfg:
+            resolved_base = domain_cfg.get("base_url")
+            resolved_token = domain_cfg.get("api_token")
+            resolved_timeout = domain_cfg.get("request_timeout")
+            resolved_headers.update(domain_cfg.get("common_headers", {}) or {})
+            resolved_common_params = domain_cfg.get("common_params", {}) or {}
+
+        # explicit args override domain config
+        if base_url is not None:
+            resolved_base = base_url
+        if token is not None:
+            resolved_token = token
+        if timeout is not None:
+            resolved_timeout = timeout
+        if headers:
+            resolved_headers.update(headers)
+
+        self.base_url = (resolved_base or BASE_URL).rstrip("/")
+        self.timeout = resolved_timeout or DEFAULT_TIMEOUT
         self.headers = {
             "Content-Type": "application/json",
             "Accept": "application/json",
         }
-        if headers:
-            self.headers.update(headers)
+        self.headers.update(resolved_headers)
 
-        access_token = token if token is not None else API_TOKEN
+        access_token = resolved_token if resolved_token is not None else API_TOKEN
         if access_token:
             self.headers["Authorization"] = f"Bearer {access_token}"
+
+        # store common query params to be merged into each request
+        self.common_params = resolved_common_params or {}
 
     def _build_url(self, path: str) -> str:
         if not path:
@@ -51,10 +92,16 @@ class HttpClient:
         if headers:
             final_headers.update(headers)
 
+        # merge common params configured for the domain with per-request params
+        final_params: Dict[str, Any] = {}
+        final_params.update(self.common_params or {})
+        if params:
+            final_params.update(params)
+
         response = requests.request(
             method=method.upper(),
             url=self._build_url(path),
-            params=params,
+            params=final_params or None,
             json=json,
             data=data,
             headers=final_headers,

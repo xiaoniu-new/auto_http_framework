@@ -1,0 +1,6 @@
+base_url: "http://hr.local:8000"
+api_token: ""
+request_timeout: 8
+common_headers:
+  X-Product: HR
+common_params: {}

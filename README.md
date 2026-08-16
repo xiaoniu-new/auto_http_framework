@@ -17,11 +17,13 @@
    ```bash
    按照"安装python虚拟环境"在项目下安装虚拟环境
    ```
-2. 配置环境变量或 `datas/config.yaml`：
+2. 配置环境变量或在 `datas/config/` 下为每个业务域添加对应的 YAML（遵循多业务域独立配置约束）：
+   - 公共配置：`datas/config/common.yaml`
+   - 域配置示例：`datas/config/hr.yaml`、`datas/config/finance.yaml`、`datas/config/business.yaml`、`datas/config/user_center.yaml`
+   示例环境变量方式（可选，用于快速覆盖）：
    ```bash
    export ENABLE_LIVE_API=false
-   export API_BASE_URL=http://127.0.0.1:8000
-   export API_TOKEN=
+   export PRODUCT_LINE=hr    # 或者在 pytest 中使用 --product-line=hr
    ```
 3. 运行全部用例：
    ```bash

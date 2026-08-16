@@ -1,8 +1,0 @@
-module: business
-base_path: /business
-endpoints:
-  - name: get_metrics
-    method: GET
-    path: /metrics
-    params:
-      date: "2026-08"

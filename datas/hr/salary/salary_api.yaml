@@ -1,8 +1,0 @@
-module: salary
-base_path: /hr/salary
-endpoints:
-  - name: get_salary
-    method: GET
-    path: /detail
-    params:
-      user_id: "10001"

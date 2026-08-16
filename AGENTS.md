@@ -5,7 +5,7 @@
 ## 1、项目固定目录结构
 auto_http_framework/
 ├── .vscode/                        # VSCode配置、当前规则文件
-|── AGENTS.md                       # Cline、Cursor、Claude通用标准规则文件
+|── AGENTS.md                       # Cline、Cursor、Claude通用标准规则文件,内容和agent_rules.md一样
 ├── ai_template/                    # AI生成模板资产
 │   ├── case_generate_prompt.txt    # 接口用例专项Prompt
 │   └── sample_capture.txt          # 抓包标准样例
@@ -54,6 +54,19 @@ auto_http_framework/
 3. 断言统一使用 `common.assert_util.AssertUtil`，禁止原生自由assert
 4. 禁止硬编码域名、接口域名、token、账号密码，全部读取配置
 5. Python 命名：snake_case，类名大驼峰，关键逻辑增加中文注释
+
+### 2.1 多业务域独立配置架构约束【重要底层架构】
+2.1 多业务域独立配置架构约束【重要底层架构】
+不同业务域（hr / finance / business / user_center）拥有完全独立配置：
+- 配置存储策略：采用**每个业务域独立yaml文件**，放置在 datas/config/ 目录；示例：datas/config/hr.yaml、datas/config/finance.yaml；同时保留 datas/config/common.yaml 存放全部业务域共享的全局配置。
+- 每个业务域yaml配置项包含：base_url、api_token、request_timeout、common_headers、common_params。
+- common/config.py 需要支持按业务域key加载对应域完整配置对象，对外提供 get_domain_config(domain_name) 接口；domain_name对应yaml文件名前缀 hr / finance。
+- common/http_client.HttpClient 必须支持传入业务域标识domain，内部自动读取该域的 base_url、api_token、request_timeout、common_headers、common_params，不允许全局共用一套token与域名。
+- 业务测试用例调用HttpClient时，传入对应domain参数，不要在业务用例内部写域名、token、超时等配置信息。
+- conftest fixture 需要支持按业务域注入对应domain配置对象。
+- 新增业务域时，只需要新增一份对应domain的yaml配置文件，不需要修改http_client、config核心代码，满足开闭原则。
+- 禁止全部业务域配置写在同一个yaml大文件中；禁止实现全局唯一一套域名/token配置，不能所有业务域共用同一个HttpClient实例。
+
 
 ## 3、【核心】接口自动化用例生成标准（抓包生成用例时严格执行）
 1. 单接口标准：**1条正向用例 + 至少3条参数化异常用例，使用 @pytest.mark.parametrize**

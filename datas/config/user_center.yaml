@@ -1,0 +1,6 @@
+base_url: "http://usercenter.local:8000"
+api_token: ""
+request_timeout: 10
+common_headers:
+  X-Product: USER_CENTER
+common_params: {}

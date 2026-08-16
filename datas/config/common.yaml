@@ -1,0 +1,6 @@
+# Common shared configuration for all domains
+request_timeout: 10
+common_headers:
+  Accept: application/json
+common_params: {}
+ENABLE_LIVE_API: false
